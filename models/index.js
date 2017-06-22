@@ -21,7 +21,7 @@ const Place = db.define('place', {
 		allowNull : false
 	},
 	location :{
-		type : Sequelize.STRING,
+		type : Sequelize.ARRAY(Sequelize.FLOAT),
 		allowNull : false
 	}
 });
@@ -33,12 +33,19 @@ const Hotel = db.define('hotel', {
 		allowNull : false
 	},
 	num_stars : {
-		type : Sequelize.STRING,
+		type : Sequelize.FLOAT(1,5),
 		allowNull : false
 	},
 	amenities : {
-		type : Sequelize.STRING,
-		allowNull : false
+		type : Sequelize.ARRAY(Sequelize.TEXT),
+		defaultValue : [],
+		set: function (amenities){
+			amenities = amenities || [];
+			if (typeof amenities === 'string'){
+				amenities = amenities.split(',').map((str) =>{ return str.trim()});
+			}
+			this.setDataValue('amenities', amenities);
+		}
 	}
 });
 
@@ -49,7 +56,7 @@ const Activity = db.define('activity', {
 		allowNull :false
 	},
 	age_range : {
-		type: Sequelize.STRING,
+		type: Sequelize.UUID,
 		allowNull :false
 	}
 });
@@ -68,3 +75,9 @@ const Restuarant = db.define('restuarant', {
 		allowNull : false
 	}
 });
+
+Hotel.belongsTo(Place, { as : 'location'});
+Activity.belongsTo(Place, { as : 'location'});
+Restuarant.belongsTo(Place, { as : 'location'});
+
+
