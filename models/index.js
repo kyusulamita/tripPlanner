@@ -18,7 +18,7 @@ const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost/tripplanner')
 
 // const db  = {};
-
+module.exports = db;
 // db.Sequelize = Sequelize;
 // db.sequelize = sequelize;
 

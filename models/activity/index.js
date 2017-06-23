@@ -1,7 +1,7 @@
 
 const Sequelize = require('sequelize')
-const db = new Sequelize('postgres://localhost/tripplanner')
-
+//const db = new Sequelize('postgres://localhost/tripplanner')
+const db = require('../')
 const Activity = db.define('activity', {
 	name :{
 		type: Sequelize.STRING,

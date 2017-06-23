@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
-// const db = require('../')
-const db = new Sequelize('postgres://localhost/tripplanner')
+const db = require('../')
+// const db = new Sequelize('postgres://localhost/tripplanner')
 
 // const Sequelize = require('sequelize')
 // const db = new Sequelize('postgres://localhost/tripplanner')
