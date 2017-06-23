@@ -1,5 +1,6 @@
 var  express = require('express');
 var  router = express.Router();
+var Promise = require('bluebird');
 var  models = require('../models');
 const  Hotel = require('../models/hotel');
 const Restaurant = require('../models/restaurant');
@@ -13,19 +14,24 @@ module.exports = router;
 
 // GET /wiki
 router.get('/', function (req, res, next) {
-    Hotel.findAll({})
-        .then(function (hotels) {
-            res.render('index', {
-                hotels: hotels
-            });
-        })
-        .catch(next);
+    var hotelPromise = Hotel.findAll({});
+    var restaurantPromise = Restaurant.findAll({});
+    var activityPromise = Activity.findAll({});
+    Promise.all([hotelPromise, restaurantPromise, activityPromise])
+    .spread(function(Hotels, Restaurants, Activities){
+    //.then(results)
+    	// Hotels = results[0];
+    	// Restaurants = results[1];
+    	// Activities = results[2];
+    	res.render('index', { Hotels: Hotels, Restaurants: Restaurants, Activities:Activities});
+    });
+
 });
 
 
-const router = require('express').Router()
-module.exports = router
+// const router = require('express').Router()
+// module.exports = router
 
-router.get('/', (req, res, next) => {
-  res.render('index')
-})
+// router.get('/', (req, res, next) => {
+//   res.render('index')
+// })

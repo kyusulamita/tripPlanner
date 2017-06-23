@@ -1,4 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1>Welcome to Trip Planner!</h1>
+
+<h3>Restarants</h3>
+<ul>
+    {% for restaurant in Restaurants %}
+    <li>
+        {{ restaurant.name }}
+    </li>
+    {% endfor %}
+</ul>
+<h3>Hotels</h3>
+<ul>
+    {% for hotel in Hotels %}
+    <li>
+        {{ hotel.name }}
+    </li>
+    {% endfor %}
+</ul>
+<h3>Activities</h3>
+<ul>
+    {% for activity in Activities %}
+    <li>
+        {{ activity.name }}
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
