@@ -28,7 +28,36 @@ router.get('/', function (req, res, next) {
 
 });
 
+router.get('/hotels', function (req, res, next) {
+    Hotel.findAll({})
+    .then((Hotels) =>{
+        res.render('singleObject', { Name: "Hotels", many: Hotels});
+    });
 
+});
+
+router.get('/restaurants', function (req, res, next) {
+    Restaurant.findAll({})
+    .then((Restaurants) =>{
+        res.render('singleObject', { Name: "Restaurants", many: Restaurants});
+    });
+
+});
+
+router.get('/activities', function (req, res, next) {
+    Activity.findAll({})
+    .then((Activities) =>{
+        res.render('singleObject', { Name: "Activities", many: Activities});
+    });
+
+});
+router.get('/places', function (req, res, next) {
+    Place.findAll({})
+    .then((Places) =>{
+        res.render('singleObject', { Name: "Places", many: Places});
+    });
+
+});
 // const router = require('express').Router()
 // module.exports = router
 

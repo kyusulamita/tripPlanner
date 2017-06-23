@@ -1,0 +1,13 @@
+{% extends "layout.html" %} {% block content %}
+    <!-- <h2>{{Name}}<h2> -->
+    <h2>{{Name}}</h2>
+                <ul>
+                    {% for one in many %}
+                    <li>
+                        {{ one.name }}
+                    </li>
+                    <!-- <br> {{one.address}} -->
+                    {% endfor %}
+                </ul>
+<!--day area-->
+{% endblock %}
